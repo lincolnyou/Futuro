@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FUTURO Survey Results</title>
+<meta name="description" content="Charts of the FUTURO knee support survey results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f3f0;
+  --surface: #fcfcfb;
+  --border: #e4e2dc;
+  --track: #eeece7;
+  --text-1: #0b0b0b;
+  --text-2: #52514e;
+  --text-3: #7a7974;
+  --s1: #2a78d6;
+  --s1-hover: #1c5cab;
+  --s2: #eb6834;
+  --s3: #1baf7a;
+  --chip-bg: #e8f0fb;
+  --chip-fg: #1c5cab;
+  --shadow: 0 1px 2px rgba(20,20,15,.04), 0 2px 8px rgba(20,20,15,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111110;
+    --surface: #1a1a19;
+    --border: #2c2c2a;
+    --track: #252523;
+    --text-1: #f0efec;
+    --text-2: #c3c2b7;
+    --text-3: #93928a;
+    --s1: #3987e5;
+    --s1-hover: #6da7ec;
+    --s2: #d95926;
+    --s3: #199e70;
+    --chip-bg: #1d2b3d;
+    --chip-fg: #9ec5f4;
+    --shadow: none;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111110; --surface: #1a1a19; --border: #2c2c2a; --track: #252523;
+  --text-1: #f0efec; --text-2: #c3c2b7; --text-3: #93928a;
+  --s1: #3987e5; --s1-hover: #6da7ec; --s2: #d95926; --s3: #199e70;
+  --chip-bg: #1d2b3d; --chip-fg: #9ec5f4; --shadow: none;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 64px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+/* Header */
+header { padding: 40px 0 24px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--s1); margin: 0 0 8px; }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 8px; font-weight: 700; }
+.meta { color: var(--text-2); margin: 0; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 24px; }
+.stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; box-shadow: var(--shadow); }
+.stat b { display: block; font-size: clamp(22px, 5vw, 30px); font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--text-2); }
+
+/* Nav */
+nav { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+nav .wrap { display: flex; gap: 6px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; scrollbar-width: none; }
+nav .wrap::-webkit-scrollbar { display: none; }
+nav a { flex: none; text-decoration: none; color: var(--text-2); font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); }
+nav a:hover, nav a.active { color: var(--chip-fg); background: var(--chip-bg); border-color: transparent; }
+
+/* Sections */
+section { padding: 32px 0 8px; }
+section > .wrap > h2 { font-size: 20px; letter-spacing: -.01em; margin: 0 0 4px; }
+.sec-note { color: var(--text-2); margin: 0 0 16px; font-size: 14px; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+@media (min-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } .card.wide { grid-column: 1 / -1; } .card.wide .bars, .card.wide .legend { max-width: 760px; } }
+
+/* Card */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 14px; box-shadow: var(--shadow); min-width: 0; }
+.card-head { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 4px; }
+.qchip { flex: none; font-size: 12px; font-weight: 600; color: var(--chip-fg); background: var(--chip-bg); border-radius: 6px; padding: 2px 7px; margin-top: 1px; font-variant-numeric: tabular-nums; }
+.card h3 { font-size: 15px; font-weight: 600; margin: 0; line-height: 1.35; }
+.base { font-size: 12.5px; color: var(--text-3); margin: 0 0 14px; padding-left: 0; }
+
+/* Bars */
+.bars { display: flex; flex-direction: column; gap: 12px; }
+.row { display: grid; grid-template-columns: 1fr; gap: 4px; }
+.row .lbl, .grp .lbl { font-size: 13.5px; color: var(--text-1); }
+.row .line { display: flex; align-items: center; gap: 8px; }
+.track { position: relative; flex: 1; height: 14px; }
+.bar { height: 14px; border-radius: 0 4px 4px 0; background: var(--s1); min-width: 2px; transition: background .15s, width .6s cubic-bezier(.2,.7,.2,1); }
+.row:hover .bar.s1 { background: var(--s1-hover); }
+.val { flex: none; font-size: 13px; color: var(--text-2); font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 72px; text-align: right; }
+.val b { color: var(--text-1); font-weight: 600; }
+.bar.s2 { background: var(--s2); }
+.bar.zero { min-width: 0; }
+.bar.s3 { background: var(--s3); }
+
+/* Grouped rows */
+.grp { display: flex; flex-direction: column; gap: 4px; }
+.grp .sub { display: flex; flex-direction: column; gap: 2px; }
+.grp .line { display: flex; align-items: center; gap: 8px; }
+.grp .track, .grp .bar { height: 12px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 0 0 14px; font-size: 13px; color: var(--text-2); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+
+/* Table toggle */
+details { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 10px; }
+summary { cursor: pointer; font-size: 12.5px; color: var(--text-3); list-style: none; user-select: none; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "▸ "; }
+details[open] summary::before { content: "▾ "; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--text-3); font-weight: 500; font-size: 12px; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+footer { padding: 32px 0 48px; color: var(--text-3); font-size: 12.5px; }
+footer p { margin: 4px 0; }
+
+@media (max-width: 420px) {
+  .stats { gap: 8px; }
+  .stat { padding: 12px; }
+  .card { padding: 16px 14px 12px; }
+  .val { min-width: 64px; }
+}
+@media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <p class="eyebrow">Survey results</p>
+  <h1>FUTURO Knee Support Survey</h1>
+  <p class="meta" id="meta"></p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<nav aria-label="Sections"><div class="wrap" id="nav"></div></nav>
+
+<main id="main"></main>
+
+<footer class="wrap" id="foot"></footer>
+
+<script>
+const DATA = {"n": 50, "dateFrom": "11 Oct", "dateTo": "19 Oct 2026", "aware": 17, "questions": {"1": {"id": "Q1", "title": "What is your age group?", "base": 50, "multi": false, "ordinal": true, "items": [{"label": "Under 20", "n": 7}, {"label": "20–29", "n": 27}, {"label": "30–39", "n": 6}, {"label": "40–49", "n": 5}, {"label": "50 and above", "n": 5}]}, "2": {"id": "Q2", "title": "What is your current occupation?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "Student", "n": 26}, {"label": "Office / desk-based job", "n": 11}, {"label": "On-my-feet or physical job (e.g. retail, F&B, delivery, healthcare, construction)", "n": 10}, {"label": "Retired / not working", "n": 3}]}, "3": {"id": "Q3", "title": "Which statement BEST describes you?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "I exercise or play sports regularly (2+ times a week)", "n": 20}, {"label": "I exercise occasionally", "n": 15}, {"label": "I am mostly sedentary / desk-bound", "n": 11}, {"label": "I am recovering from a knee injury", "n": 4}]}, "4": {"id": "Q4", "title": "Which best describes your experience with knee supports?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "I have not, and I do not expect to need one", "n": 17}, {"label": "I have considered buying one, but have not", "n": 10}, {"label": "I have not, but I expect to need one in future", "n": 9}, {"label": "I bought one in the past 12 months", "n": 7}, {"label": "I bought one more than 12 months ago", "n": 7}]}, "5": {"id": "Q5", "title": "Who do you (or would you) buy knee supports for?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "Myself", "n": 26}, {"label": "I would not buy one", "n": 11}, {"label": "A family member (e.g. parent or grandparent)", "n": 8}, {"label": "Both myself and family members", "n": 5}]}, "6": {"id": "Q6", "title": "When you think of knee supports, which brand comes to mind FIRST?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "No brand comes to mind", "n": 25}, {"label": "FUTURO", "n": 10}, {"label": "Decathlon (e.g. Tarmak, Kipsta)", "n": 8}, {"label": "Ebene", "n": 5}, {"label": "Mueller", "n": 2}]}, "7": {"id": "Q7", "title": "What is (or would be) your MAIN reason for using a knee support?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "To prevent injury during sports or exercise", "n": 23}, {"label": "To recover from an injury", "n": 10}, {"label": "Because a doctor or physiotherapist recommended it", "n": 8}, {"label": "For comfort during daily walking and errands", "n": 5}, {"label": "To manage long-term knee pain (e.g. arthritis)", "n": 4}]}, "8": {"id": "Q8", "title": "How often do you (or would you) use a knee support?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "Only when injured or in pain — I stop once I recover", "n": 27}, {"label": "Occasionally (e.g. long walks, hikes, travel)", "n": 18}, {"label": "Every time I exercise or play sports", "n": 4}, {"label": "Every day", "n": 1}]}, "9": {"id": "Q9", "title": "Where do you (or would you) MOST likely buy a knee support?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "Pharmacy (Watsons, Guardian, Unity)", "n": 32}, {"label": "Online marketplace (Shopee, Lazada, Amazon)", "n": 6}, {"label": "Sports store (e.g. Decathlon)", "n": 5}, {"label": "Clinic / hospital", "n": 4}, {"label": "Brand's own website", "n": 2}, {"label": "Supermarket (e.g. FairPrice)", "n": 1}]}, "10": {"id": "Q10", "title": "What is the MOST important factor when choosing a knee support?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "Comfort and fit", "n": 21}, {"label": "Level of support / stability", "n": 12}, {"label": "Price", "n": 8}, {"label": "Recommendation from a doctor, physio or pharmacist", "n": 6}, {"label": "Brand reputation", "n": 3}]}, "11": {"id": "Q11", "title": "What is your BIGGEST frustration with knee supports currently available?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "Hard to know which type or size to choose", "n": 18}, {"label": "Slips down or does not fit well", "n": 9}, {"label": "No real frustrations", "n": 9}, {"label": "Too expensive", "n": 7}, {"label": "Hot and uncomfortable in Singapore's weather", "n": 7}]}, "12": {"id": "Q12", "title": "Which group do you think is LEAST well served by current knee support products?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "Active young adults / casual exercisers", "n": 16}, {"label": "Office workers", "n": 11}, {"label": "Workers in physically demanding jobs", "n": 10}, {"label": "Not sure", "n": 9}, {"label": "Seniors with chronic knee pain", "n": 4}]}, "13": {"id": "Q13", "title": "How much would you be willing to pay for a good-quality knee support?", "base": 50, "multi": false, "ordinal": true, "items": [{"label": "Under $20", "n": 11}, {"label": "$20–$39", "n": 25}, {"label": "$40–$59", "n": 10}, {"label": "$60–$79", "n": 2}, {"label": "$80 or more", "n": 2}]}, "14": {"id": "Q14", "title": "How do you feel about this price range?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "A bit high, but acceptable for a trusted brand", "n": 25}, {"label": "Too expensive — I would not pay this", "n": 13}, {"label": "Fair for what it is", "n": 12}]}, "15": {"id": "Q15", "title": "If you needed a knee support, how likely would you be to buy FUTURO at this price?", "base": 50, "multi": false, "ordinal": true, "items": [{"label": "Very unlikely", "n": 1}, {"label": "Unlikely", "n": 7}, {"label": "Unsure", "n": 29}, {"label": "Likely", "n": 11}, {"label": "Very likely", "n": 2}]}, "16": {"id": "Q16", "title": "If FUTURO's prices dropped by 20%, how likely would you be to buy it?", "base": 50, "multi": false, "ordinal": true, "items": [{"label": "Very unlikely", "n": 0}, {"label": "Unlikely", "n": 3}, {"label": "Unsure", "n": 19}, {"label": "Likely", "n": 21}, {"label": "Very likely", "n": 7}]}, "17": {"id": "Q17", "title": "A generic knee support on Shopee costs about $10–$15. Which would you choose?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "FUTURO — I trust 3M quality more", "n": 22}, {"label": "Depends on how serious my knee problem is", "n": 18}, {"label": "Neither", "n": 6}, {"label": "The generic one — it is cheaper", "n": 4}]}, "18": {"id": "Q18", "title": "BEFORE this survey, had you heard of FUTURO?", "base": 50, "multi": false, "ordinal": false, "items": [{"label": "No", "n": 33}, {"label": "Yes, but I have never used it", "n": 11}, {"label": "Yes, and I have used it", "n": 6}]}, "19": {"id": "Q19", "title": "Where did you FIRST hear about FUTURO?", "base": 17, "multi": false, "ordinal": false, "items": [{"label": "Saw it on the shelf in a pharmacy", "n": 14}, {"label": "Recommended by a doctor or physio", "n": 2}, {"label": "Friends or family", "n": 1}]}, "20": {"id": "Q20", "title": "Which word BEST describes FUTURO to you?", "base": 17, "multi": true, "ordinal": false, "items": [{"label": "Trusted / reliable", "n": 8}, {"label": "Medical / clinical", "n": 5}, {"label": "Sporty / performance", "n": 4}, {"label": "Expensive", "n": 1}]}, "21": {"id": "Q21", "title": "What, if anything, makes FUTURO different from other knee support brands?", "base": 17, "multi": true, "ordinal": false, "items": [{"label": "Backed by 3M science and R&D", "n": 10}, {"label": "Nothing in particular", "n": 6}, {"label": "Easy to find in stores", "n": 3}]}, "22": {"id": "Q22", "title": "Compared to other knee supports, FUTURO's quality is:", "base": 17, "multi": false, "ordinal": true, "items": [{"label": "Much better", "n": 2}, {"label": "Slightly better", "n": 8}, {"label": "About the same", "n": 5}, {"label": "Not sure / never used it", "n": 2}]}, "23": {"id": "Q23", "title": "Which group do you think FUTURO MAINLY targets?", "base": 17, "multi": false, "ordinal": false, "items": [{"label": "Seniors and people with knee problems", "n": 7}, {"label": "People recovering from injury", "n": 6}, {"label": "Athletes and sporty people", "n": 2}, {"label": "Everyone", "n": 2}]}, "24": {"id": "Q24", "title": "How easy is it to find FUTURO when you need it?", "base": 17, "multi": false, "ordinal": true, "items": [{"label": "Very easy", "n": 10}, {"label": "Easy", "n": 2}, {"label": "Never looked for it", "n": 5}]}, "25": {"id": "Q25", "title": "The next time you need a knee support, what would you most likely do?", "base": 17, "multi": false, "ordinal": false, "items": [{"label": "Compare brands before deciding", "n": 6}, {"label": "Definitely buy FUTURO", "n": 3}, {"label": "Buy whatever the pharmacist recommends", "n": 3}, {"label": "Buy the cheapest option", "n": 3}, {"label": "Probably buy FUTURO", "n": 2}]}}, "crosstab": {"metrics": ["Aware of FUTURO (Q18)", "Name FUTURO first (Q6)", "Use only when injured (Q8)"], "rows": [{"label": "I exercise or play sports regularly (2+ times a week)", "n": 20, "vals": [7, 2, 12]}, {"label": "I exercise occasionally", "n": 15, "vals": [5, 3, 8]}, {"label": "I am mostly sedentary / desk-bound", "n": 11, "vals": [3, 3, 6]}, {"label": "I am recovering from a knee injury", "n": 4, "vals": [2, 2, 1]}]}};
+
+const SECTIONS = [
+  { id: "profile", name: "Respondents", note: "Who took the survey.", qs: [1, 2, 3] },
+  { id: "usage", name: "Knee support use", note: "Experience, needs and buying habits.", qs: [4, 5, 6, 7, 8, 9, 10, 11, 12] },
+  { id: "pricing", name: "Pricing", note: "Willingness to pay and price sensitivity.", qs: [13, 14, "15v16", 17] },
+  { id: "brand", name: "FUTURO brand", note: null, qs: [18, 19, 20, 21, 22, 23, 24, 25] },
+  { id: "segments", name: "By lifestyle", note: "How exercise habits (Q3) line up with FUTURO awareness, recall and usage.", qs: ["xt"] },
+];
+
+const pct = (n, base) => Math.round((n / base) * 100);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function el(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+
+function head(card, id, title, baseText) {
+  card.appendChild(el("div", "card-head", `<span class="qchip">${esc(id)}</span><h3>${esc(title)}</h3>`));
+  card.appendChild(el("p", "base", baseText));
+}
+
+function baseText(q) {
+  let t = q.base === DATA.n ? `All ${q.base} respondents` : `${q.base} respondents (only those aware of FUTURO)`;
+  if (q.multi) t += " · multiple answers allowed, so shares can add to more than 100%";
+  return t;
+}
+
+function barLine(share, n, maxShare, cls = "s1") {
+  const w = maxShare ? (share / maxShare) * 100 : 0;
+  return `<div class="line"><div class="track"><div class="bar ${cls}${n ? "" : " zero"}" data-w="${w.toFixed(2)}" style="width:0"></div></div>` +
+         `<span class="val"><b>${share}%</b> · ${n}</span></div>`;
+}
+
+function tableHTML(cols, rows) {
+  return `<details><summary>Show table</summary><table><thead><tr>${cols.map((c, i) => `<th${i ? ' class="num"' : ""}>${esc(c)}</th>`).join("")}</tr></thead>` +
+    `<tbody>${rows.map(r => `<tr>${r.map((v, i) => `<td${i ? ' class="num"' : ""}>${esc(v)}</td>`).join("")}</tr>`).join("")}</tbody></table></details>`;
+}
+
+function singleCard(qn) {
+  const q = DATA.questions[qn];
+  const card = el("article", "card");
+  head(card, q.id, q.title, baseText(q));
+  const shares = q.items.map(i => pct(i.n, q.base));
+  const max = Math.max(...q.items.map(i => i.n / q.base * 100));
+  const bars = el("div", "bars");
+  q.items.forEach((it, k) => {
+    const row = el("div", "row", `<div class="lbl">${esc(it.label)}</div>${barLine(shares[k], it.n, max)}`);
+    row.setAttribute("aria-label", `${it.label}: ${shares[k]} percent, ${it.n} people`);
+    bars.appendChild(row);
+  });
+  card.appendChild(bars);
+  card.insertAdjacentHTML("beforeend", tableHTML(["Answer", "Share", "Count"], q.items.map((it, k) => [it.label, shares[k] + "%", it.n])));
+  return card;
+}
+
+function groupedCard({ id, title, base, legend, rows, colsLabel, wide = false }) {
+  const card = el("article", wide ? "card wide" : "card");
+  head(card, id, title, base);
+  card.appendChild(el("div", "legend", legend.map((l, i) => `<span><i style="background:var(--s${i + 1})"></i>${esc(l)}</span>`).join("")));
+  const max = Math.max(...rows.flatMap(r => r.shares));
+  const bars = el("div", "bars");
+  rows.forEach(r => {
+    const g = el("div", "grp");
+    g.appendChild(el("div", "lbl", esc(r.label)));
+    const sub = el("div", "sub");
+    r.shares.forEach((s, i) => {
+      const ln = el("div", null, barLine(s, r.counts[i], max, "s" + (i + 1)));
+      ln.firstChild.setAttribute("aria-label", `${r.label}, ${legend[i]}: ${s} percent`);
+      sub.appendChild(ln.firstChild);
+    });
+    g.appendChild(sub);
+    bars.appendChild(g);
+  });
+  card.appendChild(bars);
+  card.insertAdjacentHTML("beforeend", tableHTML([colsLabel, ...legend],
+    rows.map(r => [r.label, ...r.shares.map((s, i) => `${s}% (${r.counts[i]})`)])));
+  return card;
+}
+
+function pricePair() {
+  const a = DATA.questions[15], b = DATA.questions[16];
+  const rows = a.items.map((it, k) => {
+    const nb = b.items[k].n;
+    return { label: it.label, counts: [it.n, nb], shares: [pct(it.n, a.base), pct(nb, b.base)] };
+  });
+  return groupedCard({
+    id: "Q15–16",
+    title: "How likely would you be to buy FUTURO — at its current price vs. after a 20% price drop?",
+    base: `All ${a.base} respondents`,
+    legend: ["At current price (Q15)", "After a 20% price drop (Q16)"],
+    rows, colsLabel: "Answer",
+  });
+}
+
+function crossTab() {
+  const x = DATA.crosstab;
+  const rows = x.rows.map(r => ({ label: `${r.label} (n = ${r.n})`, counts: r.vals, shares: r.vals.map(v => pct(v, r.n)) }));
+  return groupedCard({
+    id: "Cross-tab",
+    title: "Lifestyle segment vs. FUTURO awareness, first-mention recall and usage pattern",
+    base: "Share of each segment · all 50 respondents",
+    legend: x.metrics, rows, colsLabel: "Segment (Q3)", wide: true,
+  });
+}
+
+// Build page
+document.getElementById("meta").textContent =
+  `${DATA.n} respondents · collected ${DATA.dateFrom} – ${DATA.dateTo}`;
+document.getElementById("stats").innerHTML = [
+  [DATA.n, "Respondents"],
+  [Object.keys(DATA.questions).length, "Questions"],
+  [`${pct(DATA.aware, DATA.n)}%`, `Had heard of FUTURO (${DATA.aware})`],
+].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join("");
+
+const nav = document.getElementById("nav");
+const main = document.getElementById("main");
+SECTIONS.forEach(s => {
+  nav.insertAdjacentHTML("beforeend", `<a href="#${s.id}">${esc(s.name)}</a>`);
+  const sec = el("section"); sec.id = s.id;
+  const w = el("div", "wrap");
+  w.appendChild(el("h2", null, esc(s.name)));
+  const note = s.note ?? `Q19–Q25 were asked only of the ${DATA.aware} respondents who had heard of FUTURO before the survey.`;
+  w.appendChild(el("p", "sec-note", esc(note)));
+  const grid = el("div", "grid");
+  s.qs.forEach(q => grid.appendChild(q === "15v16" ? pricePair() : q === "xt" ? crossTab() : singleCard(q)));
+  w.appendChild(grid);
+  sec.appendChild(w);
+  main.appendChild(sec);
+});
+
+document.getElementById("foot").innerHTML =
+  `<p>Source: FUTURO knee support survey, ${DATA.n} respondents, ${DATA.dateFrom} – ${DATA.dateTo}.</p>` +
+  `<p>Percentages are rounded to the nearest whole number. Bars are scaled to the largest answer in each chart.</p>`;
+
+// Animate bars into view
+const grow = b => { b.style.width = b.dataset.w + "%"; };
+const allBars = document.querySelectorAll(".bar");
+if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { grow(e.target); io.unobserve(e.target); } }), { rootMargin: "0px 0px -40px 0px" });
+  allBars.forEach(b => io.observe(b));
+} else allBars.forEach(grow);
+
+// Highlight current section in nav
+const links = [...nav.querySelectorAll("a")];
+if ("IntersectionObserver" in window) {
+  const so = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  document.querySelectorAll("section").forEach(s => so.observe(s));
+}
+</script>
+</body>
+</html>
