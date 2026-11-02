@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Your FUTURO</title>
+  <meta name="description" content="Answer five quick questions and get matched to a FUTURO brace or support. A student concept project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,800;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="wordmark" href="#finder">FUTURO</a>
+    <a class="topbar-link" href="#articles">Articles</a>
+  </header>
+
+  <main class="layout">
+
+    <div class="intro">
+      <h1>Find your FUTURO</h1>
+      <p>Not sure which brace or support to pick? Answer five quick questions and we'll match you to one from the FUTURO range.</p>
+    </div>
+
+    <!-- ============ FINDER QUIZ ============ -->
+    <section class="finder" id="finder" aria-label="FUTURO finder quiz">
+      <div class="panel" id="panel">
+        <div class="panel-bg" aria-hidden="true"></div>
+        <div class="panel-inner" id="panel-inner" aria-live="polite">
+          <!-- screens are rendered by script.js -->
+          <noscript><p class="noscript">Turn on JavaScript to use the quiz.</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ARTICLES ============ -->
+    <section class="articles" id="articles" aria-labelledby="articles-title">
+      <h2 id="articles-title">FUTURO Articles</h2>
+      <ul class="article-list">
+        <li>
+          <button class="article-card" type="button" data-article="ankle">
+            <img src="https://images.unsplash.com/photo-1713711437257-0232e837f40c?auto=format&fit=crop&w=800&h=420&q=70" alt="A footballer lying on the grass after a fall" width="800" height="420" loading="lazy">
+            <span class="article-card-title">Ankle Support After Injury</span>
+            <span class="article-card-cta">Read article</span>
+          </button>
+        </li>
+        <li>
+          <button class="article-card" type="button" data-article="rsi">
+            <img src="https://images.unsplash.com/photo-1533442983572-6864ebf04ef9?auto=format&fit=crop&w=800&h=420&q=70" alt="A man stretching his arms in tall grass" width="800" height="420" loading="lazy">
+            <span class="article-card-title">Repetitive Strain Injury: Preventing RSI</span>
+            <span class="article-card-cta">Read article</span>
+          </button>
+        </li>
+        <li>
+          <button class="article-card" type="button" data-article="sports">
+            <img src="https://images.unsplash.com/photo-1709747631930-04f203f5d37c?auto=format&fit=crop&w=800&h=420&q=70" alt="Amateur players in a game of football" width="800" height="420" loading="lazy">
+            <span class="article-card-title">Most Common Sports Injuries and How to Play Safe</span>
+            <span class="article-card-cta">Read article</span>
+          </button>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>Student concept project.</strong> Not affiliated with or endorsed by 3M. FUTURO™ is a trademark of 3M. Product details are summarised from <a href="https://www.futuro.3m.com.sg/3M/en_SG/p/" target="_blank" rel="noopener">futuro.3m.com.sg</a>; slider values are the team's estimates.</p>
+    <p>This quiz and these articles are general information, not medical advice. See a doctor or physiotherapist for pain that is severe, swollen or not getting better.</p>
+    <p class="credits">Photos on Unsplash by
+      <a href="https://unsplash.com/photos/a-runner-sprints-on-a-track-in-the-golden-sunlight-1-nuy7fD3fw" target="_blank" rel="noopener">Jorge Alberto Vega Barrera</a>,
+      <a href="https://unsplash.com/photos/a-soccer-player-is-laying-on-the-ground-A9XmmNGthbc" target="_blank" rel="noopener">Omar Ramadan</a>,
+      <a href="https://unsplash.com/photos/man-stretching-arms-in-long-green-grass-ynhDznO2oP4" target="_blank" rel="noopener">Bill Ringer</a> and
+      <a href="https://unsplash.com/photos/a-group-of-people-playing-a-game-of-soccer-hUS8xF6PkoM" target="_blank" rel="noopener">Alex Dekker</a>.
+    </p>
+  </footer>
+
+  <!-- ============ ARTICLE READER ============ -->
+  <dialog class="reader" id="reader" aria-labelledby="reader-title">
+    <div class="reader-inner">
+      <button class="reader-close" type="button" id="reader-close" aria-label="Close article">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </button>
+      <div id="reader-content"></div>
+    </div>
+  </dialog>
+
+  <!-- ============ ARTICLE TEXT (edit freely) ============ -->
+  <template id="article-ankle" data-part="ankle" data-img="https://images.unsplash.com/photo-1713711437257-0232e837f40c?auto=format&fit=crop&w=1000&h=480&q=70" data-alt="A footballer lying on the grass after a fall">
+    <h2 id="reader-title">Ankle Support After Injury</h2>
+    <p class="lede">Most ankle sprains happen when the foot rolls inward and over-stretches the ligaments on the outside of the ankle. Good care in the first few weeks lowers the chance of it happening again.</p>
+    <h3>The first two to three days</h3>
+    <p>Protect the ankle and rest it. Ice it for 15 to 20 minutes at a time, use light compression to control swelling, and keep it raised above heart level when you can.</p>
+    <h3>When to see a doctor</h3>
+    <p>Get it checked if you can't put weight on it, the swelling or bruising is severe, the bone itself is tender, your foot feels numb, or it isn't improving after a few days.</p>
+    <h3>Getting back to moving</h3>
+    <p>Recovery usually moves from gentle range-of-motion work, to balance practice such as standing on one leg, to sport-specific drills. Re-injury is common in the months after a sprain, so don't skip the balance step.</p>
+    <h3>Where a support fits in</h3>
+    <p>A mild sleeve adds compression for everyday walking. When you return to sport, a moderate wraparound support or a stabiliser with side stays helps limit rolling. Rigid stirrup braces are generally used straight after a significant injury or a cast, on a doctor's or physio's advice. A support works alongside rehab, not instead of it.</p>
+  </template>
+
+  <template id="article-rsi" data-part="wrist" data-img="https://images.unsplash.com/photo-1533442983572-6864ebf04ef9?auto=format&fit=crop&w=1000&h=480&q=70" data-alt="A man stretching his arms in tall grass">
+    <h2 id="reader-title">Repetitive Strain Injury: Preventing RSI</h2>
+    <p class="lede">RSI is a general term for pain in muscles, tendons and nerves caused by doing the same movement over and over: typing, using a mouse, scrolling on a phone, or gripping a racket or tools.</p>
+    <h3>Early signs</h3>
+    <p>Aching, burning or throbbing, stiffness, tingling or numbness, and weakness or cramp. At first it often flares during the activity and settles with rest. Catching it early makes it much easier to manage.</p>
+    <h3>Set up your desk</h3>
+    <p>Put the top of your screen at about eye level, keep your elbows close to a right angle, and type with your wrists straight rather than bent up. Keyboard shortcuts cut down on mouse clicks.</p>
+    <h3>Break up the repetition</h3>
+    <p>Every 30 to 60 minutes, stand up, shake out your hands and stretch your wrists gently for 15 to 30 seconds each way. Switch between tasks where you can and loosen your grip on pens, phones and handles.</p>
+    <h3>Where a support fits in</h3>
+    <p>A wrist support can help keep your wrist in a neutral position while typing or sleeping, and a thumb stabiliser can ease strain at the base of the thumb from texting or gaming. See a doctor if tingling or numbness keeps coming back, wakes you at night, or your grip gets weaker.</p>
+  </template>
+
+  <template id="article-sports" data-part="" data-img="https://images.unsplash.com/photo-1709747631930-04f203f5d37c?auto=format&fit=crop&w=1000&h=480&q=70" data-alt="Amateur players in a game of football">
+    <h2 id="reader-title">Most Common Sports Injuries and How to Play Safe</h2>
+    <p class="lede">Whether you play futsal on weekends or run around the reservoir, a handful of injuries come up again and again. Most of them build up from overload rather than one bad moment.</p>
+    <h3>The usual suspects</h3>
+    <p>Ankle sprains from landing or changing direction. Hamstring and calf strains from sprinting. Runner's knee, an ache around the kneecap. Jumper's knee, pain in the tendon just below it. Tennis and golfer's elbow from repeated gripping. Shin splints from piling on mileage too fast.</p>
+    <h3>How to play safe</h3>
+    <p>Warm up for 5 to 10 minutes with moving stretches, not just standing ones. Build up slowly: a common rule of thumb is to raise weekly distance or training load by no more than about 10%. Replace worn-out shoes, schedule rest days, and drink enough in the Singapore heat. Strength work for your hips, core and calves protects your knees and ankles.</p>
+    <h3>Listen to the pain</h3>
+    <p>Sharp pain, swelling, or pain that changes the way you move is a signal to stop, not to push through.</p>
+    <h3>Where a support fits in</h3>
+    <p>For a joint you've injured before, a support can add compression and stability while you train. Pair it with the strength and warm-up habits above rather than relying on it alone.</p>
+  </template>
+
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
